@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MI SAN VALENTIN</title>
+    <style>
+        /* Estilos generales */
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Pacifico', cursive;
+            color: white;
+        }
+
+        canvas {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        /* Contenedor para el sticker */
+        .sticker-container {
+            width: 300px;
+            /* Ancho fijo para el sticker */
+            margin: 0 auto 20px;
+            /* Centrado y espacio abajo */
+        }
+
+        h1 {
+            font-size: 2rem;
+            /* Reducido de 4rem */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            font-size: 1.5rem;
+            /* Aumentado de 1.5rem */
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            /* Aumentado de 1.2rem */
+            padding: 25px 40px;
+            /* Aumentado el padding */
+            border: 2px solid white;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            background-color: rgba(255, 255, 255, 0.1);
+            /* Fondo semi-transparente */
+        }
+
+        .btn a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Media queries para responsividad */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1.5rem;
+            }
+
+            .btn a {
+                font-size: 1.3rem;
+                padding: 12px 25px;
+            }
+        }
+
+        /* Fuente romántica */
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+        /* Ocultar secciones */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Corazones flotantes */
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff6b6b;
+            font-size: 20px;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Nieve */
+        .snow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .snowflake {
+            position: absolute;
+            color: #fff;
+            font-size: 20px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+
+<body class="not-loaded" onclick="PlayAudio()">
+    
+    <audio id="musica1">
+        <source src="music.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <script>
+        function PlayAudio() {
+            var audio = document.getElementById("musica1");
+            if (audio.paused) {
+                audio.play();
+            }
+        }
+    </script>
+    <!-- Fondo estrellado -->
+    <canvas id="canvas"></canvas>
+    <canvas id="snow"></canvas>
+
+    <!-- Fondo estrellado -->
+    <canvas id="canvas"></canvas>
+
+    <!-- Corazones flotantes -->
+    <div class="hearts" id="hearts"></div>
+
+    <!-- Nieve -->
+    <div class="snow" id="snow"></div>
+
+
+    <!-- Sección 1: Pregunta inicial -->
+    <div class="container section active" id="section1">
+        <div class="sticker-container">
+            <div class="tenor-gif-embed" data-postid="22885016" data-share-method="host" data-aspect-ratio="1"
+                data-width="100%">
+                <a href="https://tenor.com/view/manja-gif-22885016">Manja Sticker</a>
+            </div>
+            <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        </div>
+        <p>No necesito una fecha especial para decirte cuánto me importas, pero hoy quiero preguntarte…</p>
+        <h1>¿Me concederías el honor de ser mi San Valentín? ❤️</h1>
+
+        <div class="btn">
+            <a href="#" onclick="showSection('section2')">¡Sí!</a>
+            <a href="#" onclick="showSection('section3')">No</a>
+        </div>
+    </div>
+
+    <!-- Sección 2: Respuesta afirmativa -->
+    <div class="container section" id="section2">
+        <div class="sticker-container">
+            <div class="tenor-gif-embed" data-postid="13669142371130578619" data-share-method="host"
+                data-aspect-ratio="1" data-width="100%">
+                <a href="https://tenor.com/view/cat-cute-gif-13669142371130578619">Cat Cute GIF</a>from
+                <a href="https://tenor.com/search/cat+cute-gifs">Cat Cute GIFs</a>
+            </div>
+            <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        </div>
+        <h1>¡No tengo palabras para describir mi felicidad!</h1>
+        <p>Eres la mejor persona del mundo. 💖</p>
+        <div class="btn">
+            <a href="corazon.html" >Corazón es Tuyo</a>
+        </div>
+    </div>
+
+    <!-- Sección 3: Primera negativa -->
+    <div class="container section" id="section3">
+        <div class="sticker-container">
+            <div class="tenor-gif-embed" data-postid="6561088576429774594" data-share-method="host"
+                data-aspect-ratio="1" data-width="100%">
+                <a href="https://tenor.com/view/sad-hamster-sadhamster-hammy-hampter-popcat-gif-6561088576429774594">Sad
+                    Hamster Sadhamster GIF</a>from
+                <a href="https://tenor.com/search/sad+hamster-gifs">Sad Hamster GIFs</a>
+            </div>
+            <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        </div>
+        <h1>¿Estás segura?</h1>
+        <p>Dicen que el amor es una decisión… pero también un sentimiento💖</p>
+        <div class="btn">
+            <a href="#" onclick="showSection('section2')">Sí</a>
+            <a href="#" onclick="showSection('section4')">No</a>
+        </div>
+    </div>
+
+    <!-- Sección 4: Segunda negativa -->
+    <div class="container section" id="section4">
+        <div class="sticker-container">
+            <div class="tenor-gif-embed" data-postid="26117922" data-share-method="host" data-aspect-ratio="1.11498"
+                data-width="100%">
+                <a href="https://tenor.com/view/cat-sticker-line-sticker-sticker-enraged-rage-gif-26117922">Cat Sticker
+                    Line Sticker Sticker</a>
+            </div>
+            <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        </div>
+        <h1>¡Piensa bien antes de hacer clic!</h1>
+        <p>No quiero perderte. 💖</p>
+        <div class="btn">
+            <a href="#" onclick="showSection('section2')">Sí</a>
+            <a href="#" onclick="showSection('section5')">No</a>
+        </div>
+    </div>
+
+    <!-- Sección 5: Tercera negativa -->
+    <div class="container section" id="section5">
+        <div class="sticker-container">
+            <div class="tenor-gif-embed" data-postid="2237861208130959259" data-share-method="host"
+                data-aspect-ratio="1" data-width="100%">
+                <a href="https://tenor.com/view/cat-cute-animal-purple-please-gif-2237861208130959259">Cat Cute
+                    Sticker</a>
+            </div>
+            <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        </div>
+        <h1>¡Mi corazón ya tomó una decisión… y es estar contigo!</h1>
+        <p>No hagas clic en "No". 💖</p>
+        <div class="btn">
+            <a href="#" onclick="showSection('section2')">Sí</a>
+            <a id="move-random" href="#">No</a>
+        </div>
+    </div>
+
+    <!-- Script del fondo estrellado -->
+    <script>
+        var canvas = document.getElementById('canvas'),
+            ctx = canvas.getContext('2d'),
+            w = canvas.width = window.innerWidth,
+            h = canvas.height = window.innerHeight,
+            hue = 217,
+            stars = [],
+            count = 0,
+            maxStars = 1300;
+
+        var canvas2 = document.createElement('canvas'),
+            ctx2 = canvas2.getContext('2d');
+        canvas2.width = 100;
+        canvas2.height = 100;
+
+        var half = canvas2.width / 2,
+            gradient2 = ctx2.createRadialGradient(half, half, 0, half, half, half);
+        gradient2.addColorStop(0.025, '#CCC');
+        gradient2.addColorStop(0.1, 'hsl(' + hue + ', 61%, 33%)');
+        gradient2.addColorStop(0.25, 'hsl(' + hue + ', 64%, 6%)');
+        gradient2.addColorStop(1, 'transparent');
+
+        ctx2.fillStyle = gradient2;
+        ctx2.beginPath();
+        ctx2.arc(half, half, half, 0, Math.PI * 2);
+        ctx2.fill();
+
+        function random(min, max) {
+            if (arguments.length < 2) {
+                max = min;
+                min = 0;
+            }
+            if (min > max) {
+                var hold = max;
+                max = min;
+                min = hold;
+            }
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function maxOrbit(x, y) {
+            var max = Math.max(x, y),
+                diameter = Math.round(Math.sqrt(max * max + max * max));
+            return diameter / 2;
+        }
+
+        var Star = function () {
+            this.orbitRadius = random(maxOrbit(w, h));
+            this.radius = random(60, this.orbitRadius) / 8;
+            this.orbitX = w / 2;
+            this.orbitY = h / 2;
+            this.timePassed = random(0, maxStars);
+            this.speed = random(this.orbitRadius) / 50000;
+            this.alpha = random(2, 10) / 10;
+            count++;
+            stars[count] = this;
+        }
+
+        Star.prototype.draw = function () {
+            var x = Math.sin(this.timePassed) * this.orbitRadius + this.orbitX,
+                y = Math.cos(this.timePassed) * this.orbitRadius + this.orbitY,
+                twinkle = random(10);
+
+            if (twinkle === 1 && this.alpha > 0) {
+                this.alpha -= 0.05;
+            } else if (twinkle === 2 && this.alpha < 1) {
+                this.alpha += 0.05;
+            }
+
+            ctx.globalAlpha = this.alpha;
+            ctx.drawImage(canvas2, x - this.radius / 2, y - this.radius / 2, this.radius, this.radius);
+            this.timePassed += this.speed;
+        }
+
+        for (var i = 0; i < maxStars; i++) {
+            new Star();
+        }
+
+        function animation() {
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.globalAlpha = 0.5;
+            ctx.fillStyle = 'hsla(' + hue + ', 64%, 6%, 2)';
+            ctx.fillRect(0, 0, w, h);
+
+            ctx.globalCompositeOperation = 'lighter';
+            for (var i = 1, l = stars.length; i < l; i++) {
+                stars[i].draw();
+            }
+            window.requestAnimationFrame(animation);
+        }
+        animation();
+
+        // Función para mostrar secciones
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Mover el botón "No" aleatoriamente en la última sección
+        document.getElementById('move-random').addEventListener('mouseover', function () {
+            var x = Math.random() * (window.innerWidth - this.offsetWidth);
+            var y = Math.random() * (window.innerHeight - this.offsetHeight);
+            this.style.position = 'absolute';
+            this.style.left = x + 'px';
+            this.style.top = y + 'px';
+        });
+
+
+
+        // Corazones flotantes
+        const heartsContainer = document.getElementById('hearts');
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heartsContainer.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        setInterval(createHeart, 300);
+
+        // Nieve
+        const snowContainer = document.getElementById('snow');
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.innerHTML = '❄️';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowContainer.appendChild(snowflake);
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+        setInterval(createSnowflake, 100);
+    </script>
+</body>
+
+</html>
